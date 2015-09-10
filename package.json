@@ -1,0 +1,19 @@
+{
+  "name": "nim_web_uikit",
+  "version": "1.0.0",
+  "description": "云信Web UI组件源码仓库",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/netease-im/NIM_Web_UIKit.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/netease-im/NIM_Web_UIKit/issues"
+  },
+  "homepage": "https://github.com/netease-im/NIM_Web_UIKit#readme"
+}
