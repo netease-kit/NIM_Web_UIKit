@@ -23,7 +23,7 @@ function switchConversationUser(msg){
  * @property {String} clazz 样式名称
  * @property {Function} onclickitem 点击列表回调
  * @property {Function} onclickavatar 点击列表头像回调
- * @property {Object} data 消息数据 data.msgs 消息数据 data.unreadmsgs 未读数据 data.unreadmsgs['iostest']={count:99} data.userinfo 用户信息 data.teamInfo 群信息
+ * @property {Object} data 消息数据 data.msgs 消息数据 data.unreadmsgs 未读数据 data.unreadmsgs['iostest']={count:99} data.userinfo 用户信息 data.teamInfo 群信息 data.account 当前用户账号
  */
 var SessionList = function(options){
 	var parent = options.parent,
