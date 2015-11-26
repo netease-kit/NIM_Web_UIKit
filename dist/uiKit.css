@@ -1,8 +1,8 @@
 .m-panel .emoji {
-	width: 20px;
-	height: 20px;
-	vertical-align: middle;
-	float: none;
+    width: 20px;
+    height: 20px;
+    vertical-align: middle;
+    float: none;
 }
 .m-panel .empty{
     padding: 10px 5px;
@@ -25,6 +25,9 @@
     height:61px;
     padding:8px 10px;
     box-sizing:border-box;
+    -webkit-box-sizing:border-box;
+    -moz-box-sizing:border-box;
+    cursor:default;
     cursor: pointer;
 }
 .m-panel li:hover, .teams li:hover, .m-panel .item::hover{
@@ -41,13 +44,16 @@
     width: 44px;
     height: 44px;
     border-radius: 50%;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -ms-border-radius: 50%;
 }
 .m-panel .text {
     margin-left: 60px;
     padding:3px 0;
     position: relative;
     height: 45px;
-    overflow: hidden;
+    overflow: hidden
 }
 .m-panel .tag{
     float: left;
@@ -59,6 +65,9 @@
     display: inline-block;
     overflow: hidden;
     text-overflow: ellipsis;
+    -webkit-text-overflow: ellipsis;
+    -moz-text-overflow: ellipsis;
+    -ms-text-overflow: ellipsis;
     white-space: nowrap;
 }
 .m-panel .text .time{
@@ -84,6 +93,9 @@
     width: 80%;
     white-space: nowrap;
     text-overflow: ellipsis;
+    -webkit-text-overflow: ellipsis;
+    -moz-text-overflow: ellipsis;
+    -ms-text-overflow: ellipsis;
     overflow: hidden;
 }
 .m-panel .text .nick time {
@@ -102,6 +114,7 @@
 }
 .m-panel .text p{
     height: 20px;
+    margin: 0px;
 }
 
 .m-panel .text .message span {
@@ -119,4 +132,11 @@
     text-align: center;
     padding: 0 5px;
     width: 20px;
+}
+.m-panel .team .team-title{
+    font-size:14px; 
+    padding: 5px 10px;
+    color: #a1aebc;
+    background-color: #f5f7fa;
+    border-bottom: 1px solid #eaeeef;
 }

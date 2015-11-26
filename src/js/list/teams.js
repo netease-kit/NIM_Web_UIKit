@@ -74,8 +74,8 @@ TeamList.prototype.inject = function(node){
  * @return {Void}   
  */
 TeamList.prototype.update = function(data){
-	var tmp1 = '<div class="team normal-team"><div class="team-title">普通群</div><ul id="normalTeam">',
-        tmp2 = '<div class="team advanced-team"><div class="team-title">高级群</div><ul id="advanceTeam">',
+	var tmp1 = '<div class="team normal-team"><div class="team-title">讨论组</div><ul id="normalTeam">',
+        tmp2 = '<div class=" team advanced-team"><div class="team-title">高级群</div><ul id="advanceTeam">',
         flag1 = false,
         flag2 = false,
         html = '',
