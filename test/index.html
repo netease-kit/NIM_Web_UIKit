@@ -20,6 +20,9 @@
 	<div class="m-list" id="friend">
 		
 	</div>
+	<div class="m-list" id="team">
+		
+	</div>
 <script src="./data.js"></script>
 <script src="../dist/uiKit.js"></script>
 <script>
@@ -30,6 +33,8 @@
    sessions.inject($("session"));
    var friends = new NIMUIKit.FriendList(friendsData);
    friends.inject($("friend"));
+   var teams = new NIMUIKit.TeamList(teamsData);
+   teams.inject($("team"));
 </script>	
 </body>
 </html>

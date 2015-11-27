@@ -36,7 +36,7 @@ var FriendList = function(options){
             target = evt.srcElement||evt.target;
         while(self!==target){
         	if (target.tagName.toLowerCase() === "img") {
-                var item = target.parentNode;
+                var item = target.parentNode.parentNode;
                 account = item.getAttribute("data-account");
                 scene = item.getAttribute("data-scene");
                 cbClickPortrait(account,scene);
@@ -80,12 +80,10 @@ FriendList.prototype.update = function(data){
 	for (var i = 0; i < list.length; i++) {
 		info = this.provider(list[i],"friend");
 		if (list[i].account !== ACCOUNT) {
-            html += ['<li class="'+(info.crtSession===info.target?'active':'')+'" data-scene="p2p" data-account="' + info.target + '">',
-                        '<img src="'+info.avatar+'"/>',
-                        '<div class="text">',
-                            '<p class="nick">',
-                                '<span>' + info.nick+'</span>',
-                            '</p>',
+            html += ['<li class="panel_item '+(info.crtSession===info.target?'active':'')+'" data-scene="p2p" data-account="' + info.account + '">',
+                        '<div class="panel_avatar"><img class="panel_image" src="'+info.avatar+'"/></div>',
+                        '<div class="panel_text">',
+                            '<p class="panel_single-row">'+info.nick+'</p>',
                         '</div>',
                     '</li>'].join("");
 		}	

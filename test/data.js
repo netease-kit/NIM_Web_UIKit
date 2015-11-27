@@ -40,7 +40,7 @@ var sessionsList =[
 			target: "wujie3",
 			text: "sdfsdf",
 			time: 1448519261346,
-			to: "wujie3",
+			to: "wujie2",
 			type: "text",
 			userUpdateTime: 1448351697679	
 		},
@@ -72,7 +72,7 @@ var sessionsList =[
 			scene: "p2p",
 			sessionId: "p2p-wujie3",
 			status: "success",
-			target: "wujie3",
+			target: "wujie2",
 			text: "sdfsdf",
 			time: 1448519261346,
 			to: "wujie3",
@@ -119,9 +119,21 @@ var sessionsList =[
 		unread: 3,
 		updateTime: 1447987020290
 	}	
+];
+var teamsList = [
+	{name:"sdfsdsdfsdfsdff",teamId:"12312",type:"normal"},
+	{name:"sdfwef",teamId:"12312",type:"normal"},
+	{name:"sdfsdwer撒放假斯蒂芬斯蒂sdfsdfdsf芬很多f",teamId:"12312",type:"normal"},
+	{name:"sdfsddff",teamId:"12312",type:"advanced"},
+	{name:"sdfwedff",teamId:"12312",type:"advanced"},
+	{name:"sdfsdwdsfsdfer撒放假斯蒂芬斯蒂芬很多f",teamId:"12312",type:"advanced"}
 ]
 var sessionsData ={
 	data:{sessions:sessionsList},
+	infoprovider:infoProvider
+}
+var teamsData ={
+	data:{teams:teamsList},
 	infoprovider:infoProvider
 }
 function infoProvider(data,type){
@@ -131,10 +143,16 @@ function infoProvider(data,type){
               	var msg = data.lastMsg,
                     scene = msg.scene;
                 info.scene = msg.scene;
-                info.target = msg.target;
+             	info.target = scene+"-"+msg.target;
+                info.account = msg.target;
                 info.time =  "星期天";
                 info.unread = data.unread>99?"99+":data.unread;
-                info.text = "测试下";
+                info.crtSession = "p2p-wujie2";  
+                if(info.target==="wujie2"){
+                	info.text = '<img class="emoji" src="./images/emoji.png">'+'我就是爱运动别让我停下来';
+                }else{
+                	info.text = "测试下是大法师父河水倒流发货速度飞快斯蒂芬";
+                }
                 if(info.scene==="p2p"){
                     //点对点
 					var userInfo =data.target;
@@ -142,20 +160,22 @@ function infoProvider(data,type){
 					info.avatar = 'http://b12026.nos.netease.com/MTAxMTAxMA==/bmltYV8xMTkwNTlfMTQ0NzMxNDU5NjgyNV9lOTc5OTE1NC02MjU4LTQzYTUtOWYzOS04ZTVhODAxMmFmMjA=?imageView&amp;thumbnail=80x80&amp;quality=85';
                 }else{
                     //群组
-                    info.nick =data.target;
+                    info.nick ="群组啊啊";
                     info.avatar = "./images/normal.png"; 
                 }
             break;
             case "friend":
-                info.target = data.account;
+                info.target = "p2p-"+data.account;
+                info.account = data.account;
                 info.nick = "猜猜我是谁";
                 info.avatar = 'http://b12026.nos.netease.com/MTAxMTAxMA==/bmltYV8xMTkwNTlfMTQ0NzMxNDU5NjgyNV9lOTc5OTE1NC02MjU4LTQzYTUtOWYzOS04ZTVhODAxMmFmMjA=?imageView&amp;thumbnail=80x80&amp;quality=85';     
             break;
             case "team":
-                // info.target = data.account;
-                // info.nick = data.nick;
-                // info.avatar = getAvatar(data.avatar);    
-                // info.crtSession = this.crtSession;  
+            	info.type =data.type;
+                info.nick =data.name;
+                info.target ="team-"+data.teamId;
+                info.teamId = data.teamId;
+                info.avatar = "./images/normal.png"; 
             break;
         }
         return info;

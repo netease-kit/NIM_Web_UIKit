@@ -8,7 +8,6 @@ var gulp = require('gulp'),
     postcss = require("gulp-postcss"),
     autoprefixer = require("autoprefixer"),
     cssnext = require("cssnext"),
-    atImport = require("postcss-import"),
     precss = require("precss");
 
 gulp.task('lint', function  () {
@@ -19,10 +18,10 @@ gulp.task('lint', function  () {
 
 gulp.task('css', function () {
     var processors = [
-        atImport,
+        precss,
         autoprefixer({browers:['last 2 versions']}),
-        cssnext,
-        precss
+        cssnext
+        
     ];
     return gulp.src('src/css/index.css')
         .pipe(postcss(processors))

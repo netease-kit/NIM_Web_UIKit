@@ -33,7 +33,7 @@ var SessionList = function(options){
             target = evt.srcElement||evt.target;
         while(self!==target){
         	if (target.tagName.toLowerCase() === "img") {
-                var item = target.parentNode;
+                var item = target.parentNode.parentNode;
                 account = item.getAttribute("data-account");
                 scene = item.getAttribute("data-scene");
                 cbClickPortrait(account,scene);
@@ -81,16 +81,16 @@ SessionList.prototype.update = function(data){
 	}else{
 		for (i = 0;i<sessions.length;i++) {
 			info = this.provider(sessions[i],"session");
-            str = ['<li class="'+(info.crtSession===info.target?'active':'')+'" data-scene="' + info.scene + '" data-account="' + info.target + '">',
-                            '<img src="'+info.avatar+'"/>',
-                            '<div class="text">',
-                                '<p>',
-                                    '<span>' +info.nick + '</span>',
-                                    '<b class="time">' + info.time + '</b>',
+            str = ['<li class="panel_item '+(info.crtSession===info.target?'active':'')+'" data-scene="' + info.scene + '" data-account="' + info.account + '">',
+                            '<div class="panel_avatar"><img class="panel_image" src="'+info.avatar+'"/></div>',
+                            '<div class="panel_text">',
+                                '<p class="panel_multi-row">',
+                                    '<span class="panel_nick">' +info.nick + '</span>',
+                                    '<b class="panel_time">' + info.time + '</b>',
                                 '</p>',
-                                '<p>',
-                                    '<span class="first-msg">' + info.text + '</span>',
-                                    info.unread ? '<b class="count ' + (info.unread>0 ? '' : 'hide') + '">' + info.unread + '</b>':'',
+                                '<p class="panel_multi-row">',
+                                    '<span class="panel_lastMsg">' + info.text + '</span>',
+                                    info.unread ? '<b class="panel_count ' + (info.unread>0 ? '' : 'hide') + '">' + info.unread + '</b>':'',
                                 '</p>',
                             '</div>',
                         '</li>'].join("");
