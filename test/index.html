@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" href="../dist/uiKit.css"/>
+	<style>
+		.m-list{
+		    width: 400px;
+		    height: 400px;
+		    border: 1px solid #ddd;
+		    margin-bottom: 5px;
+		}
+	</style>
+</head>
+<body>
+	<div class="m-list" id="session">
+		
+	</div>
+	<div class="m-list" id="friend">
+		
+	</div>
+	<div class="m-list" id="team">
+		
+	</div>
+<script src="./data.js"></script>
+<script src="../dist/uiKit.js"></script>
+<script>
+	var $ = function (id) {
+		return document.getElementById(id);
+	}
+	var sessions = new NIMUIKit.SessionList(sessionsData);
+   sessions.inject($("session"));
+   var friends = new NIMUIKit.FriendList(friendsData);
+   friends.inject($("friend"));
+   var teams = new NIMUIKit.TeamList(teamsData);
+   teams.inject($("team"));
+</script>	
+</body>
+</html>

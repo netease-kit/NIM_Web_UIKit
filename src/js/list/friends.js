@@ -23,7 +23,8 @@ var FriendList = function(options){
 		data = options.data,
 		cbClickList = options.onclickitem||function(account,type){console.log('account:'+account+'---type:'+type);},
 		cbClickPortrait = options.onclickavatar||function(account,type){console.log('account:'+account+'---type:'+type);};
-	ACCOUNT = data.account;
+	ACCOUNT = options.account;
+	this.provider = options.infoprovider;
 	this._body = document.createElement('ul');
 	this._body.className = options.clazz||"m-panel" +" j-friend";	
 
@@ -31,21 +32,19 @@ var FriendList = function(options){
 		var self = this,
 			evt = e||window.event,
 			account,
-			type,
+			scene,
             target = evt.srcElement||evt.target;
         while(self!==target){
         	if (target.tagName.toLowerCase() === "img") {
-                var item = target.parentNode;
+                var item = target.parentNode.parentNode;
                 account = item.getAttribute("data-account");
-                type = item.getAttribute("data-type");
-                cbClickPortrait(account,type);
+                scene = item.getAttribute("data-scene");
+                cbClickPortrait(account,scene);
                 return;
             }else if(target.tagName.toLowerCase() === "li"){
         	 	account = target.getAttribute("data-account");
-                type = target.getAttribute("data-type");
-                util.removeClass(util.getNode(".j-friend li.active"),'active');
-                util.addClass(target,"active");
-                cbClickList(account,type);
+                scene = target.getAttribute("data-scene");
+                cbClickList(account,scene);
                 return;
             }
             target = target.parentNode;
@@ -76,15 +75,15 @@ FriendList.prototype.inject = function(node){
  */
 FriendList.prototype.update = function(data){
 	var html="",
-		list = data.friends;
+		list = data.friends,
+		info;
 	for (var i = 0; i < list.length; i++) {
+		info = this.provider(list[i],"friend");
 		if (list[i].account !== ACCOUNT) {
-            html += ['<li data-type="p2p" data-account="' + list[i].account + '">',
-                        '<img src="'+util.getAvatar(list[i].avatar)+'"/>',
-                        '<div class="text">',
-                            '<p class="nick">',
-                                '<span>' + list[i].nick+'</span>',
-                            '</p>',
+            html += ['<li class="panel_item '+(info.crtSession===info.target?'active':'')+'" data-scene="p2p" data-account="' + info.account + '">',
+                        '<div class="panel_avatar"><img class="panel_image" src="'+info.avatar+'"/></div>',
+                        '<div class="panel_text">',
+                            '<p class="panel_single-row">'+info.nick+'</p>',
                         '</div>',
                     '</li>'].join("");
 		}	
