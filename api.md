@@ -1,6 +1,6 @@
 # 列表组件
 
-
+##例子 
 ##new NIMUIKit.SessionList(options)
 会话列表
 ###options
@@ -13,15 +13,28 @@
 | onclickitem | Function |可选，用来自定义点击列表项回调函数|
 | onclickavatar | Function |可选，用来自定义点击列表项头像回调函数|
 | data | Object | 必填，显示UI所需要的数据，具体内容见下文|
+| infoprovider | Function | 必填，返回一个对象，由上层来控制显示规则，呈现数据|
 
 #### data
 | 参数 | 类型 | 说明 | 
 | --- | --- | --- |
-| msgs | Array| 消息数据|
-| unreadmsgs | Object |未读消息|
-| userinfo | Object |用户信息|
-| teaminfo | Object |群组信息|
-| account|String | 当前用户账号|
+| sessions | Array| SDK 返回的sessions数据|
+
+#### infoprovider return {Object｝
+| 参数 | 类型 | 说明 | 
+| --- | --- | --- |
+| scene | String| p2p or team|
+| target | String|secen+“-”account，例"p2p-test"|
+| crtSession | String|secen+“-”account，例"p2p-test"|
+| account| String| 账号|
+| avatar | String| 头像地址|
+| nick | String| 昵称|
+| time | String| 消息时间|
+| text | String| 消息内容|
+| unread | String| 未读数|
+
+
+
 
 ###inject(String|Node)
 将组件插入浏览器节点
@@ -42,11 +55,21 @@
 | onclickitem | Function |可选，用来自定义点击列表项回调函数|
 | onclickavatar | Function |可选，用来自定义点击列表项头像回调函数|
 | data | Object | 必填，显示UI所需要的数据，具体内容见下文|
+| infoprovider | Function | 必填，由上层来控制显示规则，呈现数据|
 
 #### data
 | 参数 | 类型 | 说明 | 
 | --- | --- | --- |
 | teams | Array| 群组列表|
+
+#### infoprovider return {Object｝
+| 参数 | 类型 | 说明 | 
+| --- | --- | --- |
+| target | String|secen+“-”account，例"p2p-test"|
+| crtSession | String|secen+“-”account，例"p2p-test"|
+| account| String| 账号|
+| avatar | String| 头像地址|
+| nick | String| 群，讨论组名|
 
 ###inject(String|Node)
 将组件插入浏览器节点
@@ -72,8 +95,16 @@
 | 参数 | 类型 | 说明 | 
 | --- | --- | --- |
 | friends | Array| 好友列表|
-| userinfo | Object |用户信息|
 | account|String | 当前用户账号|
+
+#### infoprovider return {Object｝
+| 参数 | 类型 | 说明 | 
+| --- | --- | --- |
+| target | String|secen+“-”account，例"p2p-test"|
+| crtSession | String|secen+“-”account，例"p2p-test"|
+| account| String| 账号|
+| avatar | String| 头像地址|
+| nick | String| 昵称|
 
 ###inject(String|Node)
 将组件插入浏览器节点
