@@ -24,8 +24,8 @@
 | 参数 | 类型 | 说明 | 
 | --- | --- | --- |
 | scene | String| p2p or team|
-| target | String|secen+“-”account，例"p2p-test"|
-| crtSession | String|secen+“-”account，例"p2p-test"|
+| target | String|scene+“-”account，例"p2p-test"|
+| crtSession | String|scene+“-”account，例"p2p-test"|
 | account| String| 账号|
 | avatar | String| 头像地址|
 | nick | String| 昵称|
@@ -65,8 +65,8 @@
 #### infoprovider return {Object｝
 | 参数 | 类型 | 说明 | 
 | --- | --- | --- |
-| target | String|secen+“-”account，例"p2p-test"|
-| crtSession | String|secen+“-”account，例"p2p-test"|
+| target | String|scene+“-”account，例"p2p-test"|
+| crtSession | String|scene+“-”account，例"p2p-test"|
 | account| String| 账号|
 | avatar | String| 头像地址|
 | nick | String| 群，讨论组名|
@@ -100,8 +100,8 @@
 #### infoprovider return {Object｝
 | 参数 | 类型 | 说明 | 
 | --- | --- | --- |
-| target | String|secen+“-”account，例"p2p-test"|
-| crtSession | String|secen+“-”account，例"p2p-test"|
+| target | String|scene+“-”account，例"p2p-test"|
+| crtSession | String|scene+“-”account，例"p2p-test"|
 | account| String| 账号|
 | avatar | String| 头像地址|
 | nick | String| 昵称|
