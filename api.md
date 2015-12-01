@@ -1,6 +1,5 @@
 # 列表组件
 
-##例子 
 ##new NIMUIKit.SessionList(options)
 会话列表
 ###options
