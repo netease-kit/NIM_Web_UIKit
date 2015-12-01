@@ -4,7 +4,11 @@ var gulp = require('gulp'),
     uglify = require('gulp-uglify'),
     rename = require('gulp-rename'),
     concat = require('gulp-concat'),
-    webpackConfig = require('./webpack.config.js');
+    webpackConfig = require('./webpack.config.js'),
+    postcss = require("gulp-postcss"),
+    autoprefixer = require("autoprefixer"),
+    cssnext = require("cssnext"),
+    precss = require("precss");
 
 gulp.task('lint', function  () {
     gulp.src(['./src/js/**/*.js','./src/js/*.js'])
@@ -12,6 +16,18 @@ gulp.task('lint', function  () {
         .pipe(jshint.reporter('default'));
 });
 
+gulp.task('css', function () {
+    var processors = [
+        precss,
+        autoprefixer({browers:['last 2 versions']}),
+        cssnext
+        
+    ];
+    return gulp.src('src/css/index.css')
+        .pipe(postcss(processors))
+        .pipe(rename('uiKit.css'))
+        .pipe(gulp.dest('dist/'));
+})
 gulp.task('dist', function () {
     gulp.src('./src/js/index.js')
         .pipe(webpack(webpackConfig))
@@ -19,9 +35,6 @@ gulp.task('dist', function () {
         .pipe(rename('uiKit.min.js'))
         .pipe(uglify())
         .pipe(gulp.dest('./dist'));
-    gulp.src('./src/css/*.css')
-        .pipe(concat('uiKit.css'))
-        .pipe(gulp.dest('./dist'))
 })
 
-gulp.task('default', ['lint','dist']);
+gulp.task('default', ['lint','dist','css']);

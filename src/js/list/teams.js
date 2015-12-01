@@ -17,14 +17,15 @@ var util = require("../base/util.js");
  * @property {Object} data 消息数据 data.teams 群组数据
  */
 var TeamList = function(options){
-	var parent = options.parent,
+	var that = this,
+        parent = options.parent,
 		data = options.data,
 		cbClickList = options.onclickitem||function(account,type){console.log('account:'+account+'---type:'+type);},
 		cbClickPortrait = options.onclickavatar||function(account,type){console.log('account:'+account+'---type:'+type);};
 
 	this._body = document.createElement('ul');
-	this._body.className = options.clazz||"m-panel" +" j-team";	
-
+	this._body.className = (options.clazz||"m-panel") +" j-team";	
+    this.provider = options.infoprovider;
 	util.addEvent(this._body,'click',function(e){
 		var self = this,
 			evt = e||window.event,
@@ -33,7 +34,7 @@ var TeamList = function(options){
             target = evt.srcElement||evt.target;
         while(self!==target){
         	if (target.tagName.toLowerCase() === "img") {
-                var item = target.parentNode;
+                var item = target.parentNode.parentNode;
                 account = item.getAttribute("data-account");
                 type = item.getAttribute("data-type");
                 cbClickPortrait(account,type);
@@ -41,7 +42,7 @@ var TeamList = function(options){
             }else if(target.tagName.toLowerCase() === "li"){
         	 	account = target.getAttribute("data-account");
                 type = target.getAttribute("data-type");
-                util.removeClass(util.getNode(".j-team li.active"),'active');
+                util.removeClass(util.getNode(".j-team li.active",that._body),'active');
                 util.addClass(target,"active");
                 cbClickList(account,type);
                 return;
@@ -74,22 +75,32 @@ TeamList.prototype.inject = function(node){
  * @return {Void}   
  */
 TeamList.prototype.update = function(data){
-	var tmp1 = '<div class="team normal-team"><div class="team-title">普通群</div><ul id="normalTeam">',
-        tmp2 = '<div class="team advanced-team"><div class="team-title">高级群</div><ul id="advanceTeam">',
+	var tmp1 = '<div class="panel_team"><div class="panel_team-title">讨论组</div><ul class="j-normalTeam">',
+        tmp2 = '<div class=" panel_team"><div class="panel_team-title">高级群</div><ul class="j-advanceTeam">',
         flag1 = false,
         flag2 = false,
         html = '',
+        info,
         teams = data.teams;
         if (teams && teams.length > 0) {
             for (var i = 0, l = teams.length; i < l; ++i) {
-                if (teams[i].type === 'normal') {
+                info = this.provider(teams[i],"team");
+                if (info.type === 'normal') {
                     flag1 = true;
-                    tmp1 += '<li data-gtype="normal" data-type="team" data-account="' + teams[i].teamId + '"><img src="images/normal.png"/><div class="text">';
-                    tmp1 += '<p class="nick"><span>' + teams[i].name||teams[i].teamId + '</span><b class="hide count"></b></p><p class="first-msg"></p></div></li>';
-                } else if (teams[i].type === 'advanced') {
+                    tmp1 += ['<li class="panel_item '+(info.crtSession===info.target?'active':'')+'" data-gtype="normal" data-type="team" data-account="' + info.teamId + '">',
+                                '<div class="panel_avatar"><img class="panel_image" src="'+info.avatar+'"/></div>',
+                                '<div class="panel_text">',
+                                    '<p class="panel_single-row">'+info.nick+'</p>',
+                                '</div>',
+                            '</li>'].join("");
+                } else if (info.type === 'advanced') {
                     flag2 = true;
-                    tmp2 += '<li data-gtype="advanced" data-type="team" data-account="' + teams[i].teamId + '"><img src="images/advanced.png"/><div class="text">';
-                    tmp2 += '<p class="nick"><span>' + teams[i].name||teams[i].teamId + '</span><b class="hide count"></b></p><p class="first-msg"></p></div></li>';
+                    tmp2 += ['<li class="panel_item '+(info.crtSession===info.target?'active':'')+'" data-gtype="advanced" data-type="team" data-account="' + info.teamId + '">',
+                                '<div class="panel_avatar"><img class="panel_image" src="'+info.avatar+'"/></div>',
+                                '<div class="panel_text">',
+                                    '<p class="panel_single-row">'+info.nick+'</p>',
+                                '</div>',
+                            '</li>'].join("");
                 }
             }
             tmp1 += '</ul></div>';
