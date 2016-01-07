@@ -3,11 +3,9 @@ var gulp = require('gulp'),
     webpack = require('gulp-webpack'),
     uglify = require('gulp-uglify'),
     rename = require('gulp-rename'),
-    concat = require('gulp-concat'),
     webpackConfig = require('./webpack.config.js'),
     postcss = require("gulp-postcss"),
     autoprefixer = require("autoprefixer"),
-    cssnext = require("cssnext"),
     precss = require("precss");
 
 gulp.task('lint', function  () {
@@ -19,8 +17,7 @@ gulp.task('lint', function  () {
 gulp.task('css', function () {
     var processors = [
         precss,
-        autoprefixer({browers:['last 2 versions']}),
-        cssnext
+        autoprefixer({browers:['last 2 versions']})
         
     ];
     return gulp.src('src/css/index.css')
