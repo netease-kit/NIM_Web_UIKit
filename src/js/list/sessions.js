@@ -90,7 +90,7 @@ SessionList.prototype.update = function(data){
                                 '</p>',
                                 '<p class="panel_multi-row">',
                                     '<span class="panel_lastMsg">' + info.text + '</span>',
-                                    info.unread ? '<b class="panel_count ' + (info.unread>0 ? '' : 'hide') + '">' + info.unread + '</b>':'',
+                                    info.unread ? '<b class="panel_count">' + info.unread + '</b>':'',
                                 '</p>',
                             '</div>',
                         '</li>'].join("");
