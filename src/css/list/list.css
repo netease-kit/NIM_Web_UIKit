@@ -71,7 +71,7 @@
         }
         .panel_nick,.panel_lastMsg{
             display: inline-block;
-            width: 80%;
+            width: 60%;
             font-size: 14px;
             line-height: 20px;
             overflow: hidden;

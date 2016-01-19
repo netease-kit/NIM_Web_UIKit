@@ -46,7 +46,7 @@ var sessionsList =[
 		},
 		scene: "p2p",
 		to: "wujie3",
-		unread: 0,
+		unread: 99,
 		updateTime: 1448519261942
 	},
 	{
@@ -81,7 +81,7 @@ var sessionsList =[
 		},
 		scene: "p2p",
 		to: "wujie3",
-		unread: 2,
+		unread: 456,
 		updateTime: 1448519261942
 	},
 	{

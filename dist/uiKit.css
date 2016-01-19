@@ -73,7 +73,7 @@
 }
 .m-panel .panel_text .panel_nick, .m-panel .panel_text .panel_lastMsg {
     display: inline-block;
-    width: 80%;
+    width: 60%;
     font-size: 14px;
     line-height: 20px;
     overflow: hidden;
