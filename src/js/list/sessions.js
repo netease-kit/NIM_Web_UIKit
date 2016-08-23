@@ -81,6 +81,9 @@ SessionList.prototype.update = function(data){
 	}else{
 		for (i = 0;i<sessions.length;i++) {
 			info = this.provider(sessions[i],"session");
+            if(!info){
+                continue;
+            }
             str = ['<li class="panel_item '+(info.crtSession===info.target?'active':'')+'" data-scene="' + info.scene + '" data-account="' + info.account + '">',
                             '<div class="panel_avatar"><img class="panel_image" src="'+info.avatar+'"/></div>',
                             '<div class="panel_text">',
