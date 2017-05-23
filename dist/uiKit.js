@@ -168,11 +168,17 @@ return /******/ (function(modules) { // webpackBootstrap
 	            var account = info.account
 	            var personSubscribes = data.personSubscribes
 	            var multiPortStatus = ''
-	            if (info.scene === 'p2p') {
+	            // 开启了订阅配置
+	            if (info.scene === 'p2p' && window.CONFIG && window.CONFIG.openSubscription) {
 	                multiPortStatus = '离线'
 	                if (personSubscribes[account] && personSubscribes[account][1]) {
 	                    multiPortStatus = (personSubscribes[account][1].multiPortStatus) || '离线'
 	                }
+	            }
+	            if (multiPortStatus !== '') {
+	                var infoText = '[' + multiPortStatus + '] ' + info.text
+	            } else {
+	                infoText = info.text
 	            }
 	            str = ['<li class="panel_item '+(info.crtSession===info.target?'active':'')+'" data-scene="' + info.scene + '" data-account="' + info.account + '">',
 	                            '<div class="panel_avatar"><img class="panel_image" src="'+info.avatar+'"/></div>',
@@ -182,7 +188,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	                                    '<b class="panel_time">' + info.time + '</b>',
 	                                '</p>',
 	                                '<p class="panel_multi-row">',
-	                                    '<span class="panel_lastMsg">' + '[' + multiPortStatus + '] ' + info.text + '</span>',
+	                                    '<span class="panel_lastMsg">' + infoText + '</span>',
 	                                    info.unread ? '<b class="panel_count">' + info.unread + '</b>':'',
 	                                '</p>',
 	                            '</div>',
@@ -391,9 +397,14 @@ return /******/ (function(modules) { // webpackBootstrap
 			if (list[i].account !== ACCOUNT) {
 	      var account = list[i].account
 	      var personSubscribes = data.personSubscribes
-	      var multiPortStatus = '离线'
-	      if (personSubscribes[account] && personSubscribes[account][1]) {
-	        multiPortStatus = (personSubscribes[account][1].multiPortStatus) || '离线'
+	      var multiPortStatus = ''
+	      // 开启了订阅配置
+	      if (window.CONFIG && window.CONFIG.openSubscription) {
+	        multiPortStatus = '[离线]'
+	        if (personSubscribes[account] && personSubscribes[account][1]) {
+	          multiPortStatus = (personSubscribes[account][1].multiPortStatus) || '离线'
+	          multiPortStatus = '[' + multiPortStatus + ']'
+	        }
 	      }
 	            html += ['<li class="panel_item '+(info.crtSession===info.target?'active':'')+'" data-scene="p2p" data-account="' + info.account + '">',
 	                        '<div class="panel_avatar"><img class="panel_image" src="'+info.avatar+'"/></div>',

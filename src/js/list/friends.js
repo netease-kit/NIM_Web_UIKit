@@ -82,9 +82,14 @@ FriendList.prototype.update = function(data){
 		if (list[i].account !== ACCOUNT) {
       var account = list[i].account
       var personSubscribes = data.personSubscribes
-      var multiPortStatus = '离线'
-      if (personSubscribes[account] && personSubscribes[account][1]) {
-        multiPortStatus = (personSubscribes[account][1].multiPortStatus) || '离线'
+      var multiPortStatus = ''
+      // 开启了订阅配置
+      if (window.CONFIG && window.CONFIG.openSubscription) {
+        multiPortStatus = '[离线]'
+        if (personSubscribes[account] && personSubscribes[account][1]) {
+          multiPortStatus = (personSubscribes[account][1].multiPortStatus) || '离线'
+          multiPortStatus = '[' + multiPortStatus + ']'
+        }
       }
             html += ['<li class="panel_item '+(info.crtSession===info.target?'active':'')+'" data-scene="p2p" data-account="' + info.account + '">',
                         '<div class="panel_avatar"><img class="panel_image" src="'+info.avatar+'"/></div>',
