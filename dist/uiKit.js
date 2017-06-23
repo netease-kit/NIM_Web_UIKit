@@ -392,6 +392,7 @@ return /******/ (function(modules) { // webpackBootstrap
 		var html="",
 			list = data.friends,
 			info;
+	  html += '<div class="panel_team"><div class="panel_team-title">好友列表</div><ul>'
 		for (var i = 0; i < list.length; i++) {
 			info = this.provider(list[i],"friend");
 			if (list[i].account !== ACCOUNT) {
@@ -414,6 +415,22 @@ return /******/ (function(modules) { // webpackBootstrap
 	                    '</li>'].join("");
 			}	
 		}
+	  html += '</ul></div>'
+	  var robots = data.robots
+	  if (robots && robots.length > 0) {
+	    html += '<div class="panel_team"><div class="panel_team-title">机器人</div><ul>'
+	    for (var i = 0; i < robots.length; i++) {
+	      var robot = robots[i]
+	      var info = this.provider(robot, 'robot')
+	      html += ['<li class="panel_item '+(info.crtSession===info.target?'active':'')+'" data-scene="p2p" data-account="' + info.account + '">',
+	                  '<div class="panel_avatar"><img class="panel_image" src="'+info.avatar+'"/></div>',
+	                  '<div class="panel_text">',
+	                    '<p class="panel_single-row">'+info.nick + ' [机器人]' +'</p>',
+	                  '</div>',
+	                '</li>'].join("");
+	    }
+	    html += '</ul></div>'
+	  }
 		this._body.innerHTML = html;
 	};
 
