@@ -10,3 +10,6 @@ node环境是开发前提
 2.	修改代码
 3.	使用gulp构建生成uiKit文件 `gulp`
 
+**推荐客户得比特币,首次推荐得0.02BTC,连续推荐得0.03BTC/单,上不封顶。点击参与https://hubble.netease.com/sl/aaagiT**
+
+![main](https://github.com/netease-im/NIM_iOS_UIKit/blob/master/800x160.png)
