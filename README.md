@@ -10,6 +10,7 @@ node环境是开发前提
 2.	修改代码
 3.	使用gulp构建生成uiKit文件 `gulp`
 
-**推荐客户得比特币,首次推荐得0.02BTC,连续推荐得0.03BTC/单,上不封顶。点击参与https://yunxin.163.com/promotion/recommend**
+**#推荐好友使用云信，即享1500元京东卡奖励# 点击立即参与https://yunxin.163.com/promotion/recommend?channel=github**
 
-![main](https://github.com/netease-im/NIM_iOS_UIKit/blob/master/800x160.png)
+[![main](https://yx-web-nosdn.netease.im/quickhtml%2Fassets%2Fyunxin%2Fdefault%2F2022%2Fgithub%2F233.png)](https://yunxin.163.com/promotion/recommend?channel=github)
+
